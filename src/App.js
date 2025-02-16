@@ -7,12 +7,21 @@ export function Square({ squareState, onSquareClick }) {
 }
 
 export default function Board() {
+  const [isXNext, setIsXNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(squareIndex) {
     const newSquares = squares.slice();
-    newSquares[squareIndex] = "X";
+    // if (newSquares[squareIndex] || calculateWinner(newSquares)) {
+    //   return;
+    // }
+    if (isXNext) {
+      newSquares[squareIndex] = "X";
+    } else {
+      newSquares[squareIndex] = "O";
+    }
     setSquares(newSquares);
+    setIsXNext(!isXNext);
   }
 
 
